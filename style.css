@@ -1,9 +1,10 @@
 
 @font-face {
-    font-family: 'mazzardm_medium';
-    src: url('mazzardm-medium-webfont.woff2') format('woff2'),
-         url('mazzardm-medium-webfont.woff') format('woff');
-    font-weight: normal;
+    font-family: 'Mazzard';
+    src: url('fonts/MazzardM-Medium.otf') format('otf'),
+         url('fonts/MazzardM-Meduim.woff') format('woff'),
+         url('fonts/MazzardM-Meduim.ttf') format('truetype'),;
+    font-weight: Medium;
     font-style: normal;
 }
 @font-face {
@@ -22,7 +23,8 @@
 html {
     font-size: 8px;
     box-sizing: border-box;
-    font-family: 'mazzardm_meduim';
+    font-family: 'Mazzard',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: Medium;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -48,6 +50,7 @@ img{
 .currency-img{
     width: 36.06px;
     height: 24.08px;
+    opacity: 1;
 }
 .iphone-img {
     width:43.2rem;
@@ -89,6 +92,7 @@ code {
 h1 {
     font-size: 6rem;
     line-height: 7.2rem;
+    font-family:'Mazzard';
 }
 h2 {
     font-size: 4.8rem;
@@ -155,6 +159,7 @@ figcaption {
     font-size: 1.6rem;
     line-height: 1.6rem;
     color: #FFFFFF;
+    opacity: 1;
 }
 header {
     color: var(--clr-light);
@@ -165,6 +170,71 @@ header {
 .nav-bar {
     display: none;
 }
+.nav-toggle {
+    display: none;
+}
+.nav-toggle-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 2rem;
+    margin-right: 2rem;
+}
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    height: 0.1rem;
+    background-color: var(--bck-white);
+    width: 1.5rem;
+    position: relative;
+}
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+    
+}       
+.nav-toggle-label span::before {
+    bottom: 0.4rem;
+}
+.nav-toggle-label span::after{
+    top: 0.4rem;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    text-align: left;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    height: auto;
+}
+.dropdown-content ul {
+   display: flex;
+   flex-direction: column;
+   text-align: left;
+   background-color: var(--bck-accent);
+  
+}
+.dropdown-content ul li {
+    list-style-type: none;
+    margin-bottom: 1rem;
+}
+.dropdown-content a {
+    text-decoration: none; 
+    color: var(--clr-light);
+}
+.btn-hover {
+    margin-top: 1rem;
+}
+
+.nav-toggle:checked ~.dropdown-content{
+    display: block;
+}
+/* .dropdown-menu:hover .dropdown-content {
+    display: block;
+} */
 .nav-bar a {
     text-decoration: none;
 }
@@ -178,7 +248,6 @@ header {
     flex-direction: column;
     justify-content: center;
 }
-
 .second-container {
     flex-direction: column;
     justify-content: center;
@@ -246,8 +315,7 @@ code {
     width: 16rem;
     height: 6.6rem;
     border-radius: 37px;
-    background-color: var(--bck-white);
-    opacity: 0.5;
+    background-color: #BBBBBB;
     background-blend-mode: normal;
 }
 h5 {
@@ -345,12 +413,22 @@ main {
 footer {
     background-color: var(--bck-accent);
 }
+.footer-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .faq-form h2 {
     color: var(--clr-light);
 }
 .faq-form {
     width: 90%;
-
+}
+.faq-form-item {
+    margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .faq-form-item a {
     display: block;
@@ -361,22 +439,147 @@ footer {
     background-color: var(--clr-light);
     border-radius: 5px;
     padding: 2.1rem 3.3rem 1.8rem;
-    margin-top: 2.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(58, 46, 145, 0.231398);
 }
-.answer {
+.answer p {
     display: block;
-    background-color: var(--clr-light);
     color: var(--clr-darker);
     font-size: 1.8rem;
     line-height: 2.109rem;
-    width: 100%;
+    padding: 2.55rem 3.2rem;
 }
-ion-icon {
+.faq-link i {
     color: var(--clr-accent);
+    font-weight: bolder;
+    padding: .5rem;
 }
-.faq-link {
+.faq-link .ion-md-remove {
+    display: none;
+}
+.answer {
+    background-color: var(--clr-light);
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 500ms;
+}
+.answer::before {
+    content: "";
+    position: absolute;
+    width: 0.6rem;
+    height: 90%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+.faq-form-item:target .answer {
+    max-height: 20rem;
+}
+.faq-form-item:target .faq-link .ion-md-add {
+    display: none;
+}
+.faq-form-item:target .faq-link .ion-md-remove {
+    display: block;
+}
+.footer-main,
+.footer-footer p {
+    color: var(--clr-light);
+}
+.footer-logo {
+    width: 19.197rem;
+    height: 3.8rem;
+}
+.footer-logo-container {
+    display: flex;
+    justify-content: center;
+}
+.footer-first {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
 }
+.footer-first p {
+    font-size: 1.4rem;
+    line-height: 1.641rem;
+}
+.footer-main {
+    margin-top: 5.4rem;
+    margin-bottom: 7.9rem;
+}
+.footer-second li a{
+    text-decoration: none;
+    font-size: 1.6rem;
+    line-height: 3.4rem;
+    width: 100%;
+    color: var(--clr-light);
+}
+.footer-second ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.footer-second {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+}
+.footer-second-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 3.3rem
+}
+.footer-android-img {
+    width: 109px;
+    height: 46px;
+}
+.footer-ios-img {
+    width: 89px;
+    height: 46px;
+}
+.footer-second .h5 {
+    display: block;
+    font-weight: bolder;
+    font-size: 1.8rem;
+    line-height: 2.1rem;
+    color: var(--clr-light);
+    margin-top: 0;
+    margin-bottom: 1.7rem;
+    text-align: center;
+}
+.footer-second h5 {
+    padding-top: 1rem;
+}
+.footer-second p {
+    font-size: 1.6rem;
+    text-align: left;
+}
+.line {
+    height: 1px;
+    color: var(--clr-light);
+    opacity: 0.3;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 7.9rem;
+}
+.add-in {
+    display: none;
+}
+.add-on {
+    display: block;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    line-height: 1.875rem;
+}
+
 @media (min-width:550px) {
     html {
         font-size: 9.5px;
@@ -406,6 +609,9 @@ ion-icon {
     }
     .logo-container {
         width: 30%;
+    }
+    .dropdown-menu {
+        display: none;
     }
     .nav-bar {
         display: flex;
@@ -596,13 +802,51 @@ ion-icon {
         display: block;
         margin-top: 2.2rem;
     }
-    .footer-main {
+    .footer-logo-container {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .footer-header {
         display: flex;
         justify-content: center;
         align-content: center;
-        flex-direction: column;
     }
     .faq-form {
-        width: 58.3%;
+        width: 59%;
     }
+    .footer-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+    }
+    .footer-footer p {
+        text-align: left;
+    }
+    .footer-first {
+        margin-left: 0;
+        width: 45rem;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    .footer-first p {
+        text-align: left;
+    }
+    .footer-flex {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 85%;
+        gap: 5rem;
+    }
+    .add-on {
+        display: none;
+    } 
+    .add-in {
+        display: block;
+        margin-top: 3.4rem;
+        font-size: 1.6rem;
+        line-height: 1.875rem;
+    }   
+    
 }
